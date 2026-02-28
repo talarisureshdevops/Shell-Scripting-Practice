@@ -3,21 +3,23 @@
 USER_ID=$(id -u)
 LOGS_FOLDER="/var/log/shell-script"
 LOGS_FILE="/var/log/shell-script/$0.log"
+
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
+N="\e[0m" 
 
 if [ $USER_ID -ne 0 ]; then
-    echo -e " $R Please run this script with root user access"
+    echo -e " $R Please run this script with root user access $N"
     exit 1
 fi
 
 validate() {
 if [ $1 -ne 0 ]; then
-    echo "$2...............$G failure"
+    echo -e "$2...............$G failure"
     exit 1
 else
-    echo "$2...............$Y success"
+    echo  -e "$2...............$Y success"
 fi
 
 }
@@ -30,7 +32,7 @@ dnf install $package -y &>>$LOGS_FILE
 validate $? "$package installtion done"
 
 else 
-echo "$package already installed, $Y SKIPPING"
+echo -e "$package already installed, $Y SKIPPING"
 
 fi
 
