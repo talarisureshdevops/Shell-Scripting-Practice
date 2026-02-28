@@ -3,9 +3,9 @@
 USER_ID=$(id -u)
 LOGS_FOLDER="/var/log/shell-script"
 LOGS_FILE="/var/log/shell-script/$0.log"
-R='\e[31m'
-G='\e[32m'
-Y='\e[33m'
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
 
 if [ $USER_ID -ne 0 ]; then
     echo -e " $R Please run this script with root user access"
