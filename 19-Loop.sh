@@ -1,6 +1,5 @@
 #!/bin/bash/
 
-
 USER_ID=$(id -u)
 LOGS_FOLDER="/var/log/shell-script"
 LOGS_FILE="/var/log/shell-script/$0.log"
@@ -19,11 +18,9 @@ else
 fi
 
 }
-dnf install nginx -y &>>$LOGS_FILE
-validate $? "Installing nginx"
+for package in $@ # passing varaibles sh 19-loop.sh gninx,mysql,nodejs
+do
+dnf install $package -y
+validate $? "$package installtion done"
+done
 
-dnf install mysql -y &>>$LOGS_FILE
-validate $? "installing mysql"
-
-dnf install nodejs -y &>>$LOGS_FILE
-validate $? "installing nodejs"
